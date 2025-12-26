@@ -178,8 +178,14 @@ class GroupAdminConfig(ConfigBase):
     )
 
 
-# 获取配置
-admin_config: GroupAdminConfig = plugin.get_config(GroupAdminConfig)
+# 获取配置（每次调用时重新获取最新配置）
+def get_admin_config() -> GroupAdminConfig:
+    """获取最新的插件配置
+    
+    Returns:
+        最新的配置对象
+    """
+    return plugin.get_config(GroupAdminConfig)
 
 # 初始化分群配置管理器
 group_config_manager = GroupConfigManager("data/group_configs.json")
@@ -196,6 +202,9 @@ async def get_effective_config(group_id: int) -> dict[str, Any]:
     Returns:
         合并后的配置字典
     """
+    # 每次都重新获取最新的全局配置
+    admin_config = get_admin_config()
+    
     # 将全局配置转换为字典
     global_config_dict = {
         "PERMISSION_MODE": admin_config.PERMISSION_MODE,
@@ -242,6 +251,7 @@ async def get_bot_permission_level(group_id: int) -> PermissionLevel:
     Returns:
         PermissionLevel: bot的权限等级
     """
+    admin_config = get_admin_config()
     try:
         # 获取bot的QQ号
         bot_info = await get_bot().get_login_info()
@@ -280,6 +290,7 @@ async def get_user_permission_level(group_id: int, user_qq: str) -> PermissionLe
     Returns:
         PermissionLevel: 权限等级
     """
+    admin_config = get_admin_config()
     # 检查是否是超级管理员
     if user_qq in admin_config.SUPER_ADMINS:
         return PermissionLevel.SUPER_ADMIN
@@ -480,6 +491,7 @@ def parse_chat_key(ctx: AgentCtx) -> tuple[str, str]:
 
 async def send_admin_report(ctx: AgentCtx, operation: str, details: str):
     """发送管理操作报告给管理频道"""
+    admin_config = get_admin_config()
     if admin_config.ENABLE_ADMIN_REPORT and config.ADMIN_CHAT_KEY:
         await message.send_text(
             config.ADMIN_CHAT_KEY,
@@ -495,6 +507,9 @@ async def group_admin_prompt_inject(_ctx: AgentCtx):
     """向AI提示词注入群管助手相关内容"""
     # 获取当前群的配置
     chat_type, chat_id = parse_chat_key(_ctx)
+    
+    # 获取最新的全局配置
+    admin_config = get_admin_config()
     
     if chat_type == ChatType.GROUP.value:
         group_id = int(chat_id)
@@ -781,6 +796,7 @@ async def admin_mute_user(_ctx: AgentCtx, user_qq: str, duration: int, report: s
     # 检查禁言时长
     if duration < 0:
         return "禁言时长不能为负数"
+    admin_config = get_admin_config()
     max_duration = effective_config.get("MAX_MUTE_DURATION", admin_config.MAX_MUTE_DURATION)
     if duration > max_duration:
         return f"禁言时长不能超过 {max_duration // 86400} 天"
@@ -1491,6 +1507,9 @@ async def collect_available_methods(_ctx: AgentCtx):
     如果 ALLOW_GROUPS 为空，则所有方法都可用
     如果 ALLOW_GROUPS 不为空，则只有配置的群可以使用群管方法
     """
+    # 获取最新的配置
+    admin_config = get_admin_config()
+    
     # 如果 ALLOW_GROUPS 为空，所有方法都可用
     if len(admin_config.ALLOW_GROUPS) == 0:
         return plugin.sandbox_methods  # 返回所有已注册的方法
