@@ -1,0 +1,111 @@
+{
+  "ALLOW_GROUPS": {
+    "description": "允许使用群管功能的群组列表",
+    "hint": "如果为空，则允许所有群组使用群管功能。配置了分群配置的群会自动添加到此列表。",
+    "type": "list",
+    "default": []
+  },
+  "PERMISSION_MODE": {
+    "description": "权限模式",
+    "hint": "check_requester: 检查请求者权限; ai_autonomous: AI自主判断执行",
+    "type": "string",
+    "options": ["check_requester", "ai_autonomous"],
+    "default": "ai_autonomous"
+  },
+  "SUPER_ADMINS": {
+    "description": "超级管理员QQ列表",
+    "hint": "拥有最高权限的QQ号列表，不受任何限制",
+    "type": "list",
+    "default": []
+  },
+  "PROTECTED_USERS": {
+    "description": "受保护用户QQ列表",
+    "hint": "这些用户不能被任何管理操作影响（超级管理员除外）",
+    "type": "list",
+    "default": []
+  },
+  "MAX_MUTE_DURATION": {
+    "description": "最大禁言时长（秒）",
+    "hint": "单次禁言的最大时长，默认30天（2592000秒）",
+    "type": "int",
+    "default": 2592000
+  },
+  "ENABLE_ADMIN_REPORT": {
+    "description": "启用管理操作报告",
+    "hint": "启用后，管理操作将发送报告给管理频道",
+    "type": "bool",
+    "default": true
+  },
+  "ENABLE_MUTE": {
+    "description": "【AI敏感功能】允许禁言",
+    "hint": "开启后AI可以禁言或解禁群成员",
+    "type": "bool",
+    "default": true
+  },
+  "ENABLE_MUTE_ALL": {
+    "description": "【AI敏感功能】允许全体禁言",
+    "hint": "开启后AI可以开启或关闭全体禁言，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_KICK": {
+    "description": "【AI敏感功能】允许踢人",
+    "hint": "开启后AI可以自主决定踢出群成员，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_KICK_AND_BAN": {
+    "description": "【AI敏感功能】允许踢出并拉黑",
+    "hint": "开启后AI可以踢出并拉黑群成员，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_SET_CARD": {
+    "description": "【AI敏感功能】允许改群昵称",
+    "hint": "开启后AI可以修改群成员的群昵称",
+    "type": "bool",
+    "default": true
+  },
+  "ENABLE_SET_TITLE": {
+    "description": "【AI敏感功能】允许设置头衔",
+    "hint": "开启后AI可以设置群成员头衔，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_SET_ADMIN": {
+    "description": "【AI敏感功能】允许设置管理员",
+    "hint": "开启后AI可以设置或取消群管理员，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_DELETE_MSG": {
+    "description": "【AI敏感功能】允许撤回消息",
+    "hint": "开启后AI可以撤回群消息，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_SET_ESSENCE": {
+    "description": "【AI敏感功能】允许设置精华",
+    "hint": "开启后AI可以设置精华消息",
+    "type": "bool",
+    "default": true
+  },
+  "ENABLE_SET_GROUP_NAME": {
+    "description": "【AI敏感功能】允许改群名",
+    "hint": "开启后AI可以修改群名称，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_SET_GROUP_PORTRAIT": {
+    "description": "【AI敏感功能】允许改群头像",
+    "hint": "开启后AI可以修改群头像，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  },
+  "ENABLE_SEND_NOTICE": {
+    "description": "【AI敏感功能】允许发群公告",
+    "hint": "开启后AI可以发布群公告，建议谨慎开启",
+    "type": "bool",
+    "default": false
+  }
+}
