@@ -266,7 +266,9 @@ AI：[调用工具群管_重置群配置]
 
 ## 作者
 
-**小九**
+**小九 (XiaoJiu)**
+
+> **注意**：插件系统要求作者字段只能包含字母、数字和下划线，因此代码中使用 `XiaoJiu` 作为作者标识。
 
 ## 致谢
 
@@ -277,22 +279,6 @@ AI：[调用工具群管_重置群配置]
 - [nekro-agent](https://github.com/KroMiose/nekro-agent) - 主项目
 - [Issue Tracker](https://github.com/KroMiose/nekro-agent/issues) - 问题反馈
 - [Discussions](https://github.com/KroMiose/nekro-agent/discussions) - 讨论区
-
-## 版本
-
-v1.0.0
-
-## 许可证
-
-MIT License
-
-## 作者
-
-小九
-
-## 项目链接
-
-https://github.com/KroMiose/nekro-agent
 
 ## 版本
 

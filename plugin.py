@@ -54,7 +54,7 @@ plugin = NekroPlugin(
     module_name="group_admin",
     description="完整的群组管理工具集，提供禁言、踢人、改群昵称、设管理员等管理功能",
     version="1.0.0",
-    author="小九",
+    author="XiaoJiu",
     url="https://github.com/KroMiose/nekro-agent",
     support_adapter=["onebot_v11"],
 )
